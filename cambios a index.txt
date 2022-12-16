@@ -74,3 +74,14 @@ above FOOTER
             </div>
         </div>
     </section>
+
+
+Remove terms and conditions
+<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle page-scroll" data-toggle="dropdown" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="terms_and_conditions.html"><span class="item-text">Terms &amp; Conditions</span></a>
+                                <div class="dropdown-items-divide-hr"></div>
+                                <a class="dropdown-item" href="privacy_policy.html"><span class="item-text">Privacy Policy</span></a>
+                            </div>
+                        </li>
