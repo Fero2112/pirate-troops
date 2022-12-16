@@ -1,0 +1,76 @@
+Erased chunks of code
+
+This goes
+below CTA SECTION
+above FOOTER
+
+<!-- /// DLC SECTION /// -->
+    <section id="dlc-section" class="full-width">
+        <div class="container">
+            <div class="row tiny-margin">
+                <div class="col-xl-6">
+                    <img src="images/dlc.jpg" class="img-fluid">
+                </div>
+                <div class="col-xl-6">
+                    <div class="dlc-card">
+                        <h2 class="short-hr-left">EMPIRE DLC</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mi eros, scelerisque vitae diam eu, malesuada pellentesque sapien. Aenean faucibus nisl lacus, non finibus mauris pulvinar et. Sed ultrices laoreet est, id gravida lorem tincidunt at.</p>
+                        <a class="button" href="#">BUY ON PS4</a>
+                        <a class="button" href="#">BUY ON XB1</a>
+                        <a class="button" href="#">BUY ON PC</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6">
+                    <img src="images/dlc.jpg" class="img-fluid">
+                </div>
+                <div class="col-xl-6">
+                    <div class="dlc-card">
+                        <h2 class="short-hr-left">REBIRTH DLC</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mi eros, scelerisque vitae diam eu, malesuada pellentesque sapien. Aenean faucibus nisl lacus, non finibus mauris pulvinar et. Sed ultrices laoreet est, id gravida lorem tincidunt at.</p>
+                        <a class="button" href="#">BUY ON PS4</a>
+                        <a class="button" href="#">BUY ON XB1</a>
+                        <a class="button" href="#">BUY ON PC</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="extras" class="full-width">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <img src="images/headline.png" class="img-fluid headline" alt="source code">
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="row tiny-margin">
+                        <div class="col-md-12">
+                            <h1>STAY IN TOUTCH</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis tortor ut facilisis semper. Pellentesque dignissim sem in tincidunt aliquet.</p>
+                        </div>
+                    </div>
+                    <div id="newsletter-box" class="row tiny-margin">
+                        <div class="col-md-12">
+                            <h3>NEWSLETTER</h3>    
+                            <form id="newsletter" data-toggle="validator">
+                                <input type="email" id="emailsign" placeholder="Your Email Address"> <!-- Email Field -->
+                                <button type="submit" id="form-signup" class="button">SUBSCRIBE</button>
+                                <div id="msgSignup" class="h3 text-center hidden"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row social">
+                        <div class="col-md-12">
+                            <ul class="social-links"> <!-- Social Media Icons -->
+                                <li><a href="#"><i class="fab fa-facebook-f fa-lg icon-social"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter  fa-lg icon-social"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram fa-lg icon-social"></i></a>
+                                <li><a href="#"><i class="fab fa-youtube fa-lg icon-social"></i></a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
