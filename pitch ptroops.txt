@@ -1,0 +1,22 @@
+Leandro Calcina
+
+
+Tower Rush is an exciting new indie game that combines point and click adventure with card collection mechanics. Players will explore a mysterious tower, battling monsters and collecting cards to build up their deck of powerful spells and abilities. With each play-through, players will face unique challenges and uncover new secrets as they progress through the tower, making each experience unique and engaging.
+
+Pirate Troops is a unique point-and-click card collection game set in the high seas. Assemble your own crew of scallywags and explore a world of adventure and danger. Collect cards while solving puzzles, then brave perilous missions and intense battles to make your way into this thrilling story
+
+Pirate Troops is a thrilling point and click adventure game with card collection mechanics. You play as Sammy, a young pirate boy in search of hidden treasures. Battle your way through an exciting adventure with an expansive cast of characters to collect and upgrade cards. With its unique blend of action, exploration and card collection, Pirate Troops is a must-play for fans of adventure games. So, join Sammy in his quest to become the ultimate pirate and uncover the secrets of the high seas.
+
+
+<div class="row">
+                <div class="col-xl-6 col-md-12">
+                    <p>You can also play a short demo of a very early version here!</p>
+                    <iframe frameborder="0" src="https://itch.io/embed/1783895" width="552" height="167"><a href="https://piratetroops.itch.io/piratetroops">PirateTroops by Fero</a></iframe> 
+                </div>
+            </div>
+
+
+
+<iframe frameborder="0" src="https://itch.io/embed-upload/6802119?color=333333" allowfullscreen="" width="1920" height="1100"><a href="https://piratetroops.itch.io/piratetroops">Play PirateTroops on itch.io</a></iframe>
+
+
