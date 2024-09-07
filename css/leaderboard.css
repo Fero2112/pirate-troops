@@ -1,0 +1,86 @@
+/* Pirate-Themed Pixel Art Style with Dark-Blue and White Colors */
+
+/* General container styles */
+.leaderboard-container {
+  margin: 20px auto; /* Center the leaderboard */
+  padding: 20px;
+  width: 80%; /* Make the leaderboard more compact */
+  max-width: 600px; /* Set a maximum width */
+  font-family: 'Press Start 2P', sans-serif; /* Retro pixel font */
+  background-color: #0a2540; /* Dark-blue background */
+  border: 4px solid #1c4b7d; /* Slightly lighter dark-blue border */
+  border-radius: 15px;
+  box-shadow: 10px 10px 0px #1c4b7d; /* Adds depth */
+}
+
+/* Heading style */
+.leaderboard-container h1 {
+  color: #ffffff; /* White text */
+  font-size: 18px;
+  text-align: center;
+  text-shadow: 2px 2px #1c4b7d; /* Subtle shadow for depth */
+  margin-bottom: 15px;
+}
+
+/* Table styles */
+.leaderboard-container table {
+  width: 100%; /* Ensure table fits the container */
+  border-collapse: collapse;
+  background-color: #142d52; /* Slightly lighter dark-blue for the table */
+}
+
+/* Header styles */
+.leaderboard-container th {
+  background-color: #1c4b7d; /* Lighter dark-blue header */
+  color: #ffffff; /* White text */
+  font-size: 12px;
+  padding: 12px;
+  border: 2px solid #285f91; /* Even lighter border for contrast */
+  text-align: left;
+}
+
+/* Body styles */
+.leaderboard-container td {
+  font-size: 10px;
+  padding: 10px;
+  color: #ffffff; /* White text */
+  border: 2px solid #285f91; /* Lighter blue borders between cells */
+  text-align: left;
+}
+
+/* Row striping for readability */
+.leaderboard-container tr:nth-child(even) {
+  background-color: #1a3967; /* Slightly darker blue for alternating rows */
+}
+
+/* Row hover effect */
+.leaderboard-container tr:hover {
+  background-color: #285f91; /* Lighter blue hover effect */
+}
+
+/* Special pixelated font and retro style */
+.leaderboard-container * {
+  image-rendering: pixelated; /* Pixelated effect for text and images */
+  font-family: 'Press Start 2P', sans-serif; /* Pixel art font */
+}
+
+/* Scrollbar customization for retro feel */
+.leaderboard-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.leaderboard-container::-webkit-scrollbar-thumb {
+  background: #1c4b7d;
+  border-radius: 10px;
+}
+
+.leaderboard-container::-webkit-scrollbar-track {
+  background: #0a2540;
+}
+
+/* Responsive behavior */
+@media (max-width: 600px) {
+  .leaderboard-container table {
+    font-size: 8px;
+  }
+}

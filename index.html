@@ -35,6 +35,9 @@
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
 
+    <!-- FONT PIXEL -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <!-- STYLES -->
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -49,6 +52,9 @@
     <link href="css/lightbox.min.css" rel="stylesheet">
     <!-- Main Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <!-- Leaderboard Stylesheet -->
+    <link href="css/leaderboard.css" rel="stylesheet">
+
 </head>
 <body>
     <!-- Cookies Notification -->
@@ -133,9 +139,30 @@
                         </div>
                     </div>
                 </div>
+                        
             </div>
         </div>
     </section><!-- Hero Section End -->
+    
+    <!-- /// LEADERBOARD /// -->
+        <div class="leaderboard-container">
+            <h1>Saltiest Sailors</h1>
+
+
+                <table id="leaderboard">
+                <thead>
+                    <tr>
+                    <th>Rank</th>
+                    <th>Pirate</th>
+                    <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboardBody">
+                    <!-- Rows will be dynamically inserted here by JavaScript -->
+                </tbody>
+                </table>
+                <script src="js/leaderboard.js"></script>
+        </div>
     
 
     <!-- /// ABOUT SECTION /// --> 
@@ -146,7 +173,7 @@
                 <div class="col-md-6"> <!--original "col-xl-6 col-md-12"-->
                     <h1 class="short-hr-left">THE GAME</h1>
                     <p>Pirate Troops mixes <strong>point and click</strong> immersive story telling with fun <strong>card collection & fighting mechanics</strong>. Puzzles and mystery solving will lead to unlocking cards and <strong>recruiting crew mates</strong>!</p>
-                    <p>Sammy is a pirate kid who lives on the island of Tortuga Gorda with his Gramps. He will depart to adventure in search of his Father, who was once one of the mightiest pirates ever known but disappeared under mysterious circumstances.</p>
+                    <p>Sammy is a pirate kid who lives on the island of Tortuga Gorda with his Gramps. He will depart to adventure in search of his Father, who was once one of the mightiest pirates ever known, but disappeared under mysterious circumstances.</p>
                 </div>
                 <div class="col-md-6"> <!--original "col-xl-6 col-md-12"-->
                     <p>You can also play a short demo of a very early version here!</p>
@@ -156,6 +183,8 @@
         </div>
     </section>
     
+
+      
     
     <!-- /// FEATURES SECTION /// -->
     <section id="features-section">
