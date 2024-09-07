@@ -1,0 +1,1004 @@
+openapi: 3.0.0
+info:
+  title: Leaderboards API
+  version: '1.0'
+  description:  |
+    # Introduction
+
+    This is the API specification for the Unity Leaderboards service that enables
+    game developers to store, sort, and rank scores for their games.
+
+    # General Information
+
+    A leaderboard score can be created through this API. In addition, player scores
+    can be retrieved (either as a set of leaderboard entries or for a particular player), both for the active
+    leaderboard version and any archived read-only versions, and a list of versions can be retrieved.
+
+    ## Rate Limits
+
+    The API has rate limiting in place. Request are limited on a per-player
+    basis to 60 requests per minute which would allow for a sustained request per second.
+
+    The API responds with a `429` HTTP status code if the rate limit is
+    exceeded.
+
+    It will also respond with a `Retry-After` header to be used in conjunction with a client's retry logic.
+    The value is the number of seconds until a request for the given player will be accepted.
+
+tags:
+  - name: Leaderboards
+    description: Associated with the Leaderboards service
+
+servers:
+  - url: 'https://leaderboards.services.api.unity.com'
+
+security:
+  - Client: [ ]
+  - ServiceAccount: [ ]
+
+paths:
+  '/v1/projects/{projectId}/leaderboards/{leaderboardId}/scores':
+    parameters:
+      - $ref: '#/components/parameters/projectId.v1'
+      - $ref: '#/components/parameters/LeaderboardId'
+      - $ref: '#/components/parameters/IncludeMetadata'
+    get:
+      summary: Get Scores
+      tags:
+        - Leaderboards
+      parameters:
+        - schema:
+            type: integer
+            minimum: 0
+          in: query
+          name: offset
+          description: The number of entries to skip when retrieving the leaderboard scores. Defaults to 0
+        - schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+          in: query
+          name: limit
+          description: The number of leaderboard scores to return. Defaults to 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardScoresPage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getLeaderboardScores
+      description: |-
+        Get list of scores and ranks for the specified leaderboard, with specified pagination.
+  '/v1/projects/{projectId}/leaderboards/{leaderboardId}/tiers/{tierId}/scores':
+    parameters:
+      - $ref: '#/components/parameters/projectId.v1'
+      - $ref: '#/components/parameters/LeaderboardId'
+      - $ref: '#/components/parameters/TierId'
+      - $ref: '#/components/parameters/IncludeMetadata'
+    get:
+      summary: Get Scores By Tier
+      tags:
+        - Leaderboards
+      parameters:
+        - schema:
+            type: integer
+            minimum: 0
+          in: query
+          name: offset
+          description: The number of entries to skip when retrieving the leaderboard scores. Defaults to 0
+        - schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+          in: query
+          name: limit
+          description: The number of leaderboard scores to return. Defaults to 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardTierScoresPage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getLeaderboardScoresByTier
+      description: |-
+        Get list of scores and ranks for the specified leaderboard, within the specified tier, with specified pagination.
+  '/v1/projects/{projectId}/leaderboards/{leaderboardId}/scores/players':
+    parameters:
+      - $ref: '#/components/parameters/projectId.v1'
+      - $ref: '#/components/parameters/LeaderboardId'
+      - $ref: '#/components/parameters/IncludeMetadata'
+    post:
+      summary: Get Scores By PlayerIds
+      tags:
+        - Leaderboards
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardScoresWithNotFoundPlayerIds'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getLeaderboardScoresByPlayerIds
+      description: |-
+        Get list of scores and ranks for the specified leaderboard, with specified playerIds.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaderboardPlayerIds'
+  '/v1/projects/{projectId}/leaderboards/{leaderboardId}/versions/{versionId}/scores/players':
+    parameters:
+      - $ref: '#/components/parameters/projectId.v1'
+      - $ref: '#/components/parameters/LeaderboardId'
+      - $ref: '#/components/parameters/VersionId'
+      - $ref: '#/components/parameters/IncludeMetadata'
+    post:
+      summary: Get Scores By PlayerIds for Archived Leaderboard
+      tags:
+        - Leaderboards
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardVersionScoresByPlayerIds'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getLeaderboardScoresByPlayerIdsArchiveVersion
+      description: |-
+        Get list of scores and ranks for an archived leaderboard, with specified playerIds.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaderboardPlayerIds'
+  '/v1/projects/{projectId}/leaderboards/{leaderboardId}/scores/players/{playerId}/range':
+    parameters:
+      - $ref: '#/components/parameters/projectId.v1'
+      - $ref: '#/components/parameters/LeaderboardId'
+      - $ref: '#/components/parameters/PlayerId'
+      - $ref: '#/components/parameters/IncludeMetadata'
+    get:
+      summary: Get Player Range
+      tags:
+        - Leaderboards
+      parameters:
+        - schema:
+            type: integer
+            minimum: 1
+            maximum: 500
+          in: query
+          name: rangeLimit
+          description: The number of entries either side of the player to retrieve. Defaults to 5.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardScores'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getLeaderboardScoresPlayerRange
+      description: |-
+        Get the list of neighbouring players for the specified player Id.
+  '/v1/projects/{projectId}/leaderboards/{leaderboardId}/versions/{versionId}/scores/players/{playerId}/range':
+    parameters:
+      - $ref: '#/components/parameters/projectId.v1'
+      - $ref: '#/components/parameters/LeaderboardId'
+      - $ref: '#/components/parameters/VersionId'
+      - $ref: '#/components/parameters/PlayerId'
+      - $ref: '#/components/parameters/IncludeMetadata'
+    get:
+      summary: Get Player Range for Archived Leaderboard
+      tags:
+        - Leaderboards
+      parameters:
+        - schema:
+            type: integer
+            minimum: 1
+            maximum: 500
+          in: query
+          name: rangeLimit
+          description: The number of entries either side of the player to retrieve. Defaults to 5.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardVersionRange'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getLeaderboardVersionScoresPlayerRange
+      description: |-
+        Get the list of neighbouring players for the specified player Id for an archived Leaderboard.
+  '/v1/projects/{projectId}/leaderboards/{leaderboardId}/scores/players/{playerId}':
+    parameters:
+      - $ref: '#/components/parameters/projectId.v1'
+      - $ref: '#/components/parameters/LeaderboardId'
+      - $ref: '#/components/parameters/PlayerId'
+    get:
+      summary: Get Player Score
+      tags:
+        - Leaderboards
+      parameters:
+          - $ref: '#/components/parameters/IncludeMetadata'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardEntryWithUpdatedTime'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getLeaderboardPlayerScore
+      description: |-
+        Get score and rank for the specified player in the specified leaderboard.
+    post:
+      summary: Add Player Score
+      tags:
+        - Leaderboards
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardEntryWithUpdatedTime'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddLeaderboardScore'
+      operationId: addLeaderboardPlayerScore
+      description: |-
+        Add score for the specified player to the specified leaderboard.
+  '/v1/projects/{projectId}/leaderboards/{leaderboardId}/versions':
+    parameters:
+      - $ref: '#/components/parameters/projectId.v1'
+      - $ref: '#/components/parameters/LeaderboardId'
+      - schema:
+          type: integer
+          minimum: 0
+        in: query
+        required: false
+        name: limit
+        description: The number of leaderboard versions to return.
+    get:
+      summary: Get Archived Versions
+      tags:
+        - Leaderboards
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardVersions'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getLeaderboardVersions
+      description: |-
+        Get list of archived leaderboard versions for the specified leaderboard, with specified pagination.
+  '/v1/projects/{projectId}/leaderboards/{leaderboardId}/versions/{versionId}/scores':
+    parameters:
+      - $ref: '#/components/parameters/projectId.v1'
+      - $ref: '#/components/parameters/LeaderboardId'
+      - $ref: '#/components/parameters/VersionId'
+      - $ref: '#/components/parameters/IncludeMetadata'
+    get:
+      summary: Get Archived Version Scores
+      tags:
+        - Leaderboards
+      parameters:
+        - schema:
+            type: integer
+            minimum: 0
+          in: query
+          name: offset
+          description: The number of entries to skip when retrieving the leaderboard scores. Defaults to 0
+        - schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+          in: query
+          name: limit
+          description: The number of leaderboard scores to return. Defaults to 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardVersionScoresPage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getLeaderboardVersionScores
+      description: |-
+        Get list of scores and ranks for the specified archived leaderboard version, with specified pagination.
+  '/v1/projects/{projectId}/leaderboards/{leaderboardId}/versions/{versionId}/tiers/{tierId}/scores':
+    parameters:
+      - $ref: '#/components/parameters/projectId.v1'
+      - $ref: '#/components/parameters/LeaderboardId'
+      - $ref: '#/components/parameters/VersionId'
+      - $ref: '#/components/parameters/TierId'
+      - $ref: '#/components/parameters/IncludeMetadata'
+    get:
+      summary: Get Archived Version Scores By Tier
+      tags:
+        - Leaderboards
+      parameters:
+        - schema:
+            type: integer
+            minimum: 0
+          in: query
+          name: offset
+          description: The number of entries to skip when retrieving the leaderboard scores. Defaults to 0
+        - schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+          in: query
+          name: limit
+          description: The number of leaderboard scores to return. Defaults to 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardVersionTierScoresPage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getLeaderboardVersionScoresByTier
+      description: |-
+        Get list of scores and ranks for the specified archived leaderboard version, within the specified tier, with specified pagination.
+  '/v1/projects/{projectId}/leaderboards/{leaderboardId}/versions/{versionId}/scores/players/{playerId}':
+    parameters:
+      - $ref: '#/components/parameters/projectId.v1'
+      - $ref: '#/components/parameters/LeaderboardId'
+      - $ref: '#/components/parameters/VersionId'
+      - $ref: '#/components/parameters/PlayerId'
+      - $ref: '#/components/parameters/IncludeMetadata'  
+    get:
+      summary: Get Archived Version Player Score
+      tags:
+        - Leaderboards
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardVersionEntry'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: getLeaderboardVersionPlayerScore
+      description: |-
+        Get score and rank for the specified player in the specified archived leaderboard version.
+components:
+  parameters:
+    projectId.v1:
+      name: projectId
+      in: path
+      description: The project's [Project ID](https://docs.unity.com/ugs-overview/manual/managing-unity-projects)
+      required: true
+      schema:
+        type: string
+        format: uuid
+    LeaderboardId:
+      name: leaderboardId
+      in: path
+      description: ID of the leaderboard
+      required: true
+      schema:
+        type: string
+      example: my-leaderboard
+    VersionId:
+      name: versionId
+      in: path
+      description: ID of the leaderboard version
+      required: true
+      schema:
+        type: string
+      example: "20220517135053019266622"
+    PlayerId:
+      name: playerId
+      in: path
+      description: ID of the player
+      required: true
+      schema:
+        type: string
+      example: s1QFdyYFXCC2YBocplKoLstxvQ2r
+    IncludeMetadata:
+      name: includeMetadata
+      in: query
+      description: True/false to determine whether to include metadata.
+      required: false
+      schema:
+        type: boolean
+      example: false    
+    TierId:
+      name: tierId
+      in: path
+      description: ID of the leaderboard tier.
+      required: true
+      schema:
+        type: string
+      example: gold
+  schemas:
+    LeaderboardScore:
+      title: LeaderboardScore
+      type: object
+      properties:
+        score:
+          type: number
+          format: double
+          example: 120.3
+        metadata:
+          type: object
+      required:
+        - score
+    AddLeaderboardScore:
+      title: AddLeaderboardScore
+      type: object
+      properties:
+        score:
+          type: number
+          format: double
+          example: 120.3
+        metadata:
+          type: object
+        versionId:
+          type: string
+      required:
+        - score
+    LeaderboardEntry:
+      title: LeaderboardEntry
+      type: object
+      properties:
+        playerId:
+          type: string
+          example: 5drhidte8XgD4658j2eHtSljIAzA
+        playerName:
+          type: string
+          example: Jane Doe
+        rank:
+          type: integer
+          minimum: 0
+          example: 42
+        score:
+          type: number
+          format: double
+          example: 120.3
+        tier:
+          type: string
+          example: gold
+        metadata:
+          type: object
+          example:
+            team: red
+      required:
+        - playerId
+        - playerName
+        - rank
+        - score
+    LeaderboardEntryWithUpdatedTime:
+      title: LeaderboardEntry
+      type: object
+      allOf:
+        - properties:
+            updatedTime:
+              type: string
+              format: date-time
+        - $ref: '#/components/schemas/LeaderboardEntry'
+      required:
+        - updatedTime
+    PagingParams:
+      title: PagingParams
+      type: object
+      properties:
+        offset:
+          type: integer
+          minimum: 0
+        limit:
+          type: integer
+          minimum: 0
+          example: 10
+        total:
+          type: integer
+          minimum: 0
+          example: 1
+    LeaderboardScoresPage:
+      title: LeaderboardScoresPage
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/PagingParams'
+        - $ref: '#/components/schemas/LeaderboardScores'
+    LeaderboardTierScoresPage:
+      title: LeaderboardTierScoresPage
+      type: object
+      allOf:
+        - properties:
+            tier:
+              type: string
+        - $ref: '#/components/schemas/LeaderboardScoresPage'
+    LeaderboardPlayerIds:
+      title: LeaderboardPlayerIds
+      type: object
+      properties:
+        playerIds:
+          type: array
+          items:
+            type: string
+          example: [ "5drhidte8XgD4658j2eHtSljIAzA", "GZWIdLM4I1vFvv1VGhqqDKNPK06b" ]
+    LeaderboardScores:
+      title: LeaderboardScores
+      type: object
+      allOf:
+        - properties:
+            results:
+              type: array
+              items:
+                $ref: '#/components/schemas/LeaderboardEntry'
+    LeaderboardScoresWithNotFoundPlayerIds:
+      title: LeaderboardScoresWithNotFoundPlayerIds
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/LeaderboardScores'
+        - properties:
+            entriesNotFoundForPlayerIds:
+              type: array
+              items:
+                type: string
+                example: GZWIdLM4I1vFvv1VGhqqDKNPK06b
+    LeaderboardVersionScoresByPlayerIds:
+      title: LeaderboardVersionScoresByPlayerIds
+      type: object
+      allOf:
+        - properties:
+            version:
+              $ref: '#/components/schemas/LeaderboardVersion'
+        - $ref: '#/components/schemas/LeaderboardScoresWithNotFoundPlayerIds'
+    LeaderboardVersionScoresPage:
+      title: LeaderboardVersionScoresPage
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/LeaderboardVersionWrapper'
+        - $ref: '#/components/schemas/LeaderboardScoresPage'
+    LeaderboardVersionTierScoresPage:
+      title: LeaderboardVersionTierScoresPage
+      type: object
+      allOf:
+        - properties:
+            tier:
+              type: string
+              example: gold
+        - $ref: '#/components/schemas/LeaderboardVersionScoresPage'
+    LeaderboardVersionRange:
+      title: LeaderboardVersionRange
+      type: object
+      allOf:
+        - properties:
+            version:
+              $ref: '#/components/schemas/LeaderboardVersion'
+        - $ref: '#/components/schemas/LeaderboardScores'
+    LeaderboardVersionEntry:
+      title: LeaderboardVersionEntry
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/LeaderboardVersionWrapper'
+        - $ref: '#/components/schemas/LeaderboardEntry'
+    LeaderboardVersions:
+      title: LeaderboardVersions
+      type: object
+      properties:
+        leaderboardId:
+          type: string
+          example: my-leaderboard
+        nextReset:
+          type: string
+          format: date-time
+        versionId: 
+          type: string
+          example: "20230213175322850781990"
+        totalArchivedVersions:
+          type: integer
+          example: 3
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaderboardVersion'
+      required:
+        - leaderboardId
+        - results
+    LeaderboardVersion:
+      title: LeaderboardVersion
+      type: object
+      properties:
+        id:
+          type: string
+          example: "20230213175322850781977"
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+    LeaderboardVersionWrapper:
+      title: LeaderboardVersionWrapper
+      properties:
+        version:
+          $ref: '#/components/schemas/LeaderboardVersion'
+    BasicErrorResponse:
+      title: BasicErrorResponse
+      description: |
+        Referenced from - https://tools.ietf.org/html/rfc7807#page-3
+        Consumers MUST use the 'type' string as the primary identifier for the problem type; the 'title' string is advisory and included only for users who are not aware of the semantics of the URI and do not have the ability to discover them (e.g., offline log analysis). Consumers SHOULD NOT automatically dereference the type URI.
+        The "status" member, if present, is only advisory; it conveys the HTTP status code used for the convenience of the consumer. Generators MUST use the same status code in the actual HTTP response, to assure that generic HTTP software that does not understand this format still behaves correctly.  See Section 5 for further caveats regarding its use.
+        Consumers can use the status member to determine what the original status code used by the generator was, in cases where it has been changed (e.g., by an intermediary or cache), and when message bodies persist without HTTP information.  Generic HTTP software will still use the HTTP status code.
+        The "detail" member, if present, ought to focus on helping the client correct the problem, rather than giving debugging information.
+      type: object
+      properties:
+        type:
+          type: string
+          description: >-
+            A URI reference [RFC3986] that identifies the problem type. This
+            specification encourages that, when dereferenced, it provide
+            human-readable documentation for the problem type (e.g., using HTML
+            [W3C.REC-html5-20141028]). When this member is not present, its
+            value is assumed to be "about:blank".
+        title:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem type. It SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization (e.g., using proactive content negotiation;
+            see [RFC7231], Section 3.4).
+          example: Bad Request
+        status:
+          type: integer
+          description: >-
+            The HTTP status code ([RFC7231], Section 6) generated by the origin
+            server for this occurrence of the problem.
+          example: 400
+        code:
+          type: integer
+          description: |
+            Service specific error code. Codes include:
+            - `27000`: Deletion of the specified leaderboard is in progress at the time of the request
+            - `27001`: Score submission required to view the scores of this leaderboard
+            - `27002`: Unknown error while retrieving leaderboard player names
+            - `27003`: Leaderboard entry creation is already in progress
+            - `27004`: Leaderboard entry creation is still in progress
+            - `27005`: Leaderboard could not be found
+            - `27006`: Leaderboard could not be found
+            - `27007`: Leaderboard bucket could not be found
+            - `27008`: Leaderboard tier could not be found
+            - `27009`: Leaderboard entry could not be found
+            - `27010`: Leaderboard version could not be found
+            - `27011`: Leaderboard already exists with the provided ID
+            - `27012`: Leaderboard does not have buckets
+            - `27013`: Leaderboard has buckets
+            - `27014`: Leaderboard is not tiered
+          example: 1002
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: "Failed to parse request body. Error: Unexpected end of JSON input"
+        instance:
+          type: string
+          nullable: true
+          description: A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced.
+      required:
+        - type
+        - title
+        - status
+        - code
+        - detail
+    ValidationErrorResponse:
+      title: ValidationErrorResponse
+      type: object
+      description: Validation error response when a value provided from the client does notpass validation on server.
+      allOf:
+        - $ref: '#/components/schemas/BasicErrorResponse'
+        - properties:
+            errors:
+              description: Array of validation error objects enumerating the invalid fields and their reasons
+              type: array
+              items:
+                $ref: '#/components/schemas/ValidationError'
+      required:
+        - errors
+    ValidationError:
+      title: ValidationError
+      type: object
+      properties:
+        field:
+          type: string
+          example: playerId
+        messages:
+          type: array
+          items:
+            type: string
+            example: playerId must not be empty
+      required:
+        - field
+        - messages
+      description: Single error in the Validation Error Response.
+  responses:
+    BadRequest:
+      description: |
+        Bad Request. Returned code indicates one of:
+        - Request parameter validation failure, see the errors field for more details
+        - Other
+      content:
+        application/problem+json:
+          schema:
+            oneOf:
+              - $ref: '#/components/schemas/BasicErrorResponse'
+                example:
+                  type: problems/basic
+                  title: Bad Request
+                  status: 400
+                  code: 1002
+                  detail: "Failed to parse request body. Error: Unexpected end of JSON input"
+              - $ref: '#/components/schemas/ValidationErrorResponse'
+                example:
+                  type: problems/validation
+                  title: Validation error
+                  status: 400
+                  code: 1004
+                  detail: See 'errors' for specific validation errors
+                  instance: null
+                  errors:
+                    - field: string
+                      messages:
+                        - parameter is required
+            discriminator:
+              propertyName: type
+              mapping:
+                'problems/basic': '#/components/schemas/BasicErrorResponse'
+                'problems/validation': '#/components/schemas/ValidationErrorResponse'
+    Unauthorized:
+      description: Invalid Authentication Token
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BasicErrorResponse'
+          example:
+            type: problems/basic
+            title: Unauthorized
+            status: 401
+            code: 1005
+            detail: "Unauthorized"
+    Forbidden:
+      description: Forbidden
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BasicErrorResponse'
+          example:
+            type: problems/basic
+            title: Forbidden
+            status: 403
+            code: 1005
+            detail: "Forbidden"
+    NotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BasicErrorResponse'
+          example:
+            type: problems/basic
+            title: Not Found
+            status: 404
+            code: 27006
+            detail: "Leaderboard could not be found"
+    TooManyRequests:
+      description: Too Many Requests
+      headers:
+        Retry-After:
+          schema:
+            type: number
+          description: The number of seconds until a request will be accepted
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BasicErrorResponse'
+          example:
+            type: problems/basic
+            title: Too Many Requests
+            status: 429
+            code: 50
+            detail: "Too many requests"
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BasicErrorResponse'
+          example:
+            type: problems/basic
+            title: Error
+            status: 500
+            code: 0
+            detail: "An unknown error occurred"
+    ServiceUnavailable:
+      description: Service Unavailable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BasicErrorResponse'
+          example:
+            type: problems/basic
+            title: Service Unavailable
+            status: 503
+            code: 1000
+            detail: service health ping failed
+  securitySchemes:
+    Client:
+      type: http
+      scheme: bearer
+      description: |-
+        To get started with Authentication, please visit the
+        [Client Authentication section](https://services.docs.unity.com/docs/client-auth).
+    ServiceAccount:
+      type: http
+      scheme: bearer
+      description: |-
+        To get started with Authentication, please visit the
+        [Service Account Authentication section](https://services.docs.unity.com/docs/service-account-auth).
+        When using a Service Account, these APIs require exchanging Service Account credentials for
+        an access token, please see the section about the
+        [Token Exchange API](https://services.docs.unity.com/docs/service-account-auth/index.html#extra-step-use-the-token-exchange-api).
