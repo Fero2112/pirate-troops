@@ -4,7 +4,7 @@
 
 const WISHLIST_COUNT = 70;
 const WISHLIST_GOAL  = 200;
-const STEAM_URL      = 'https://store.steampowered.com/app/YOUR_APP_ID/Pirate_Troops/';
+const STEAM_URL      = 'https://store.steampowered.com/app/4210820/Pirate_Troops/';
 
 document.addEventListener('DOMContentLoaded', function () {
     var countEl    = document.getElementById('wishlist-count');
