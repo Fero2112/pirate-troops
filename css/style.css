@@ -464,7 +464,7 @@ button {
 .hero-caption {
     position: relative;
     margin-top: 15vh;
-    padding: 0 15px;
+    padding: 0 15px 60px 15px;
 }
 .headline {
     text-align: center;
@@ -509,7 +509,7 @@ button {
 /* -RESPONSIVE STYLES- */
 @media (min-width : 1366px) {
     .hero-unit {
-        height: 100vh;
+        min-height: 100vh;
     }
 }
 @media (max-width : 988px) {
