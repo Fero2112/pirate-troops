@@ -2,7 +2,7 @@
 // Update WISHLIST_COUNT manually whenever you check your Steamworks dashboard.
 // Change STEAM_URL to your actual Steam store page URL before going live.
 
-const WISHLIST_COUNT = 57;
+const WISHLIST_COUNT = 70;
 const WISHLIST_GOAL  = 200;
 const STEAM_URL      = 'https://store.steampowered.com/app/4210820/Pirate_Troops/';
 
