@@ -1,0 +1,144 @@
+/* ── Wishlist Counter Widget ───────────────────────────────────────────────── */
+
+.wishlist-widget {
+    margin: 28px auto 8px auto;
+    padding: 36px 48px;
+    max-width: 700px;
+    background-color: #0a2540;
+    border: 3px solid #1c4b7d;
+    border-radius: 10px;
+    box-shadow: 6px 6px 0px #1c4b7d;
+    font-family: 'Press Start 2P', sans-serif;
+    text-align: center;
+}
+
+.wishlist-widget .wl-title {
+    color: #ffffff;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    text-shadow: 1px 1px #1c4b7d;
+    line-height: 1.8;
+}
+
+.wishlist-widget .wl-anchor {
+    color: #d71414;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+}
+
+/* Numbers row */
+.wishlist-widget .wl-numbers {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.wishlist-widget .wl-count {
+    font-size: 72px;
+    color: #ffffff;
+    line-height: 1;
+    text-shadow: 3px 3px #d71414;
+    min-width: 120px;
+    display: inline-block;
+}
+
+.wishlist-widget .wl-separator {
+    font-size: 40px;
+    color: #1c4b7d;
+}
+
+.wishlist-widget .wl-goal {
+    font-size: 36px;
+    color: #ffffff;
+    opacity: 0.7;
+}
+
+/* Progress bar track */
+.wishlist-widget .wl-bar-track {
+    background-color: #142d52;
+    border: 2px solid #285f91;
+    border-radius: 6px;
+    height: 24px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 6px;
+    position: relative;
+}
+
+/* Progress bar fill */
+.wishlist-widget .wl-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #d71414, #ff4d4d);
+    border-radius: 4px;
+    transition: width 0.1s linear;
+    position: relative;
+}
+
+/* Pixel-stripe overlay on the fill */
+.wishlist-widget .wl-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 8px,
+        rgba(0,0,0,0.15) 8px,
+        rgba(0,0,0,0.15) 10px
+    );
+}
+
+.wishlist-widget .wl-percent {
+    font-size: 8px;
+    color: #ffffff;
+    opacity: 0.6;
+    text-align: right;
+    margin-bottom: 16px;
+}
+
+/* Steam button */
+.wishlist-widget .wl-steam-btn {
+    display: inline-block;
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 11px;
+    color: #ffffff;
+    background-color: #1b2838;
+    border: 2px solid #66c0f4;
+    border-radius: 4px;
+    padding: 10px 16px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+.wishlist-widget .wl-steam-btn:hover,
+.wishlist-widget .wl-steam-btn:focus {
+    background-color: #66c0f4;
+    color: #1b2838;
+    text-decoration: none;
+}
+
+.wishlist-widget .wl-steam-btn:visited {
+    color: #ffffff;
+}
+
+.wishlist-widget .wl-steam-btn:hover svg,
+.wishlist-widget .wl-steam-btn:focus svg {
+    fill: #1b2838;
+}
+
+.wishlist-widget .wl-steam-btn svg {
+    fill: #ffffff;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    margin-right: 6px;
+    transition: fill 0.2s ease;
+}

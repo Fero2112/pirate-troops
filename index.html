@@ -54,6 +54,8 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- Leaderboard Stylesheet -->
     <link href="css/leaderboard.css" rel="stylesheet">
+    <!-- Wishlist Counter Stylesheet -->
+    <link href="css/wishlist.css" rel="stylesheet">
 
 </head>
 <body>
@@ -111,31 +113,52 @@
         <div class="row hero-unit">
             <div class="container">
                 <div class="row text-center">
-                    <div class="col-md-6">
+                    <div class="col-md-10 offset-md-1">
                         <div class="hero-caption"><!-- Main Tagline -->
-                            <img src="images/headline.png" class="img-fluid headline" alt="source code">
-                            <p>Indie game in development! If you like what we are doing you can join us in <strong>Discord</strong> and suscribe in <strong>Youtube</strong>.</p> <!-- test de texto -->
-                            <!--<a href="https://discord.gg/tantyP8Ety" class="button"><img src="images/discord.png" /></a>
-                            <a href="https://www.youtube.com/@piratetroops5738" class="button"><img src="images/youtube.png" /></a>-->
-                            <!--<a href="https://discord.gg/kn65rdxZ" class="button">FOLLOW US</a> comentado para cambiarlo por botón de discord-->
-                            <a href="https://discord.gg/kn65rdxZ"> <!--added from discord autobuttons-->
-                            <img src="https://discordapp.com/api/guilds/1042770114434576384/widget.png?style=shield"/></a> <!--added from discord autobuttons-->
-                            <script src="https://apis.google.com/js/platform.js"></script> <!--added from youtube autobuttons-->
-                            <div class="g-ytsubscribe" data-channelid="UC3FdOo-2fVCocmPhexiEmiQ" data-layout="full" data-count="default"></div> <!--added from youtube autobuttons-->                            
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- <div class="video-box">
-                            <a class="js-video-button" data-video-id='MGAaSgCfL-g' data-channel="Youtube">
-                                <img class="play-button" src="images/play-button-white.svg" alt="play-button">
-                                <h2>WATCH OUR JOURNEY</h2>
-                            </a>
-                        </div> -->
-                        <div class="hero-caption"><!-- Main Tagline -->
-                            <h2 class="short-hr-left">THE PLAN</h2>
-                            <p>We are working on a game because we are absolute fans of <strong>Point and Click</strong> narrative and <strong>Card Games</strong> collection and in depth strategy</p> <!-- texto 1 -->
-                            <p>The plan is to <strong>mix these two up</strong> and portray them with <strong>beautiful pixel art</strong> and a <strong>captiviting story</strong></p>
-                            <p>Its really hard to make a game from zero, but if you like these ideas you can help us by following us!</p> <!-- texto 2 -->                       
+                            <img src="images/headline.png" class="img-fluid headline" alt="source code" style="max-width: 800px; width: 95%; margin: 0 auto 24px auto; display: block;">
+
+                            <!-- Wishlist intro text -->
+                            <p style="margin: 0 auto 20px auto; max-width: 600px; font-size: 0.95rem; line-height: 1.7;">
+                                Our Steam page is live! Every wishlist makes a huge difference. Help us reach 200 on the Steam page launch day!
+                            </p>
+
+                            <!-- Wishlist Counter -->
+                            <div class="wishlist-widget">
+                                <p class="wl-title">&#9875; WISHLIST GOAL</p>
+                                <span class="wl-anchor">DAY 1 LAUNCH</span>
+                                <div class="wl-numbers">
+                                    <span id="wishlist-count" class="wl-count">0</span>
+                                    <span class="wl-separator">/</span>
+                                    <span class="wl-goal">200</span>
+                                </div>
+                                <div class="wl-bar-track">
+                                    <div id="wishlist-fill" class="wl-bar-fill"></div>
+                                </div>
+                                <p id="wishlist-percent" class="wl-percent">0%</p>
+                                <a id="wishlist-steam-btn" class="wl-steam-btn" href="#" target="_blank" rel="noopener noreferrer">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.38l3.09-6.37a3.5 3.5 0 1 1 4.6-4.6l6.37-3.09A12 12 0 0 0 12 0zm-.5 15a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+                                    WISHLIST ON STEAM
+                                </a>
+                            </div>
+                            <!-- /Wishlist Counter -->
+
+                            <!-- Social buttons -->
+                            <div style="margin-top: 20px;">
+                                <p>Indie game in development! Join us on <strong>Discord</strong> and subscribe on <strong>Youtube</strong>.</p>
+                                <a href="https://discord.gg/kn65rdxZ">
+                                <img src="https://discordapp.com/api/guilds/1042770114434576384/widget.png?style=shield"/></a>
+                                <script src="https://apis.google.com/js/platform.js"></script>
+                                <div class="g-ytsubscribe" data-channelid="UC3FdOo-2fVCocmPhexiEmiQ" data-layout="full" data-count="default"></div>
+                            </div>
+
+                            <!-- The Plan hidden temporarily
+                            <div style="margin-top: 36px; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center;">
+                                <h2 class="short-hr-center">THE PLAN</h2>
+                                <p>We are working on a game because we are absolute fans of <strong>Point and Click</strong> narrative and <strong>Card Games</strong> collection and in depth strategy</p>
+                                <p>The plan is to <strong>mix these two up</strong> and portray them with <strong>beautiful pixel art</strong> and a <strong>captiviting story</strong></p>
+                                <p>Its really hard to make a game from zero, but if you like these ideas you can help us by following us!</p>
+                            </div>
+                            -->
                         </div>
                     </div>
                 </div>
@@ -145,10 +168,9 @@
     </section><!-- Hero Section End -->
     
     <!-- /// LEADERBOARD /// -->
+    <!-- Leaderboard hidden temporarily
         <div class="leaderboard-container">
             <h1>Ranking</h1>
-
-
                 <table id="leaderboard">
                 <thead>
                     <tr>
@@ -158,11 +180,11 @@
                     </tr>
                 </thead>
                 <tbody id="leaderboardBody">
-                    <!-- Rows will be dynamically inserted here by JavaScript -->
                 </tbody>
                 </table>
                 <script src="js/leaderboard.js"></script>
         </div>
+    -->
     
 
     <!-- /// ABOUT SECTION /// --> 
@@ -390,5 +412,6 @@
     <script src="js/lightbox.min.js"></script>
     <script src="js/validator.min.js"></script>
     <script src="js/arsnl.js"></script>
+    <script src="js/wishlist.js"></script>
 </body>
 </html>
