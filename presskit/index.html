@@ -1,0 +1,442 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    <title>Pirate Troops – Press Kit</title>
+    <meta name="description" content="Press kit for Pirate Troops by Neverending Labyrinth.">
+    <meta name="robots" content="noindex">
+
+    <!-- FONT PIXEL -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <!-- STYLES -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/all.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        /* ── Press Kit overrides ───────────────────────────── */
+        body { background-color: #080808; color: #fff; }
+
+        .pk-hero {
+            background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(../images/bg.jpg);
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+        .pk-hero img.pk-logo {
+            max-width: 520px;
+            width: 85%;
+            margin: 0 auto 24px auto;
+            display: block;
+        }
+        .pk-hero p.tagline {
+            font-family: 'Press Start 2P', sans-serif;
+            font-size: 10px;
+            color: #d71414;
+            letter-spacing: 2px;
+            margin-bottom: 0;
+        }
+
+        /* ── Sections ──────────────────────────────────────── */
+        .pk-section {
+            padding: 60px 0 40px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .pk-section:last-of-type { border-bottom: none; }
+
+        .pk-section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 24px;
+        }
+
+        /* ── Key facts table ───────────────────────────────── */
+        .pk-facts {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .pk-facts li {
+            padding: 10px 0;
+            border-bottom: 1px solid #1c1c1c;
+            font-family: Montserrat, sans-serif;
+            font-size: 0.9rem;
+        }
+        .pk-facts li:last-child { border-bottom: none; }
+        .pk-facts .fact-label {
+            font-family: 'Press Start 2P', sans-serif;
+            font-size: 8px;
+            color: #d71414;
+            display: block;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+
+        /* ── Screenshots ───────────────────────────────────── */
+        .pk-screenshots .screenshot-item {
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .pk-screenshots img {
+            width: 100%;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .pk-screenshots .screenshot-item:hover img {
+            transform: scale(1.03);
+        }
+        .pk-screenshots .dl-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(0,0,0,0.7);
+            text-align: center;
+            padding: 8px 0;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .pk-screenshots .screenshot-item:hover .dl-overlay { opacity: 1; }
+        .pk-screenshots .dl-overlay a {
+            font-family: 'Press Start 2P', sans-serif;
+            font-size: 7px;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .pk-screenshots .dl-overlay a:hover { color: #d71414; }
+
+        /* ── Logos / Art ────────────────────────────────────── */
+        .pk-asset-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .pk-asset-card img {
+            max-height: 140px;
+            max-width: 100%;
+            width: auto;
+            margin: 0 auto 16px auto;
+            display: block;
+        }
+        .pk-asset-card .button {
+            font-family: 'Press Start 2P', sans-serif;
+            font-size: 8px;
+            background: #d71414;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+        .pk-asset-card .button:hover { background: #a00; color: #fff; text-decoration: none; }
+
+        /* ── Contact / Links ────────────────────────────────── */
+        .pk-contact a {
+            color: #d71414;
+            text-decoration: underline;
+        }
+        .pk-links a {
+            display: inline-block;
+            font-family: 'Press Start 2P', sans-serif;
+            font-size: 8px;
+            padding: 10px 16px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            margin: 6px 4px;
+            color: #fff;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .pk-links a:hover { border-color: #d71414; color: #d71414; text-decoration: none; }
+        .pk-links a.steam-link { background: #1b2838; border-color: #66c0f4; }
+        .pk-links a.steam-link:hover { border-color: #66c0f4; color: #66c0f4; }
+
+        /* ── Video wrapper ──────────────────────────────────── */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.7);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+
+        /* ── Download-all button ─────────────────────────────── */
+        .btn-dl-all {
+            display: inline-block;
+            font-family: 'Press Start 2P', sans-serif;
+            font-size: 8px;
+            background: #d71414;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            letter-spacing: 1px;
+            margin-bottom: 28px;
+            transition: background 0.2s;
+        }
+        .btn-dl-all:hover { background: #a00; color: #fff; }
+        .btn-dl-all:disabled { background: #555; cursor: wait; color: #aaa; }
+
+        /* ── Back link ──────────────────────────────────────── */
+        .pk-back {
+            font-family: 'Press Start 2P', sans-serif;
+            font-size: 8px;
+            color: #888;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0 0 0;
+        }
+        .pk-back:hover { color: #d71414; text-decoration: none; }
+
+        /* ── Footer ─────────────────────────────────────────── */
+        #pk-footer {
+            background: #000;
+            padding: 30px 0;
+            text-align: center;
+            font-family: Montserrat, sans-serif;
+            font-size: 0.8rem;
+            color: #555;
+        }
+        #pk-footer a { color: #555; }
+        #pk-footer a:hover { color: #d71414; }
+    </style>
+</head>
+<body>
+
+    <!-- ── HERO ─────────────────────────────────────────────── -->
+    <div class="pk-hero">
+        <img src="../images/headline.png" class="pk-logo" alt="Pirate Troops">
+        <p class="tagline">Press Kit</p>
+        <div style="margin-top: 16px;">
+            <a href="../" class="pk-back">&#8592; Back to main site</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- ── KEY FACTS ──────────────────────────────────────── -->
+        <div class="pk-section">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2 class="short-hr-left">KEY FACTS</h2>
+                    <ul class="pk-facts">
+                        <li><span class="fact-label">Developer</span>Neverending Labyrinth</li>
+                        <li><span class="fact-label">Genre</span>Point &amp; Click Adventure / Card Strategy</li>
+                        <li><span class="fact-label">Platforms</span>PC — Windows &amp; Mac</li>
+                        <li><span class="fact-label">Release window</span>Q3 2027</li>
+                        <li><span class="fact-label">Price</span>$14.99</li>
+                        <li><span class="fact-label">Website</span><a href="https://www.piratetroops.com">piratetroops.com</a></li>
+                        <li><span class="fact-label">Press contact</span><a href="mailto:fero.avalos@gmail.com">fero.avalos@gmail.com</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <h2 class="short-hr-left">ABOUT THE GAME</h2>
+                    <p>Pirate Troops mixes <strong>point and click</strong> immersive storytelling with fun <strong>card collection &amp; fighting mechanics</strong>. Puzzles and mystery solving will lead to unlocking cards and <strong>recruiting crew mates</strong>!</p>
+                    <p>Sammy Shortlegs is a pirate kid who lives on the island of Tortuga Gorda with his Gramps. He will depart to adventure in search of his Father — once one of the mightiest pirates ever known — who disappeared under mysterious circumstances. Full of old-school puzzle design, a cast of uncanny characters, and beautiful pixel art, Pirate Troops is a love letter to classic point &amp; click adventure games.</p>
+                    <h2 class="short-hr-left" style="margin-top: 32px;">ABOUT THE STUDIO</h2>
+                    <p><strong>Neverending Labyrinth</strong> — We develop games where riddles and narrative work together to take you on an old school fantasy journey.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── TRAILER ────────────────────────────────────────── -->
+        <div class="pk-section">
+            <h2 class="short-hr-left">TRAILER</h2>
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <div class="video-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/eF3mbmlUDsI?rel=0"
+                            title="Pirate Troops Trailer"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <!-- ── SCREENSHOTS ────────────────────────────────────── -->
+        <div class="pk-section">
+            <h2 class="short-hr-left">SCREENSHOTS</h2>
+            <p style="font-size:0.85rem; color:#888; margin-bottom:16px;">Hover over an image to download individually. Free to use in editorial coverage of Pirate Troops.</p>
+            <button class="btn-dl-all" id="btn-dl-screenshots">&#11015; DOWNLOAD ALL SCREENSHOTS (.zip)</button>
+            <div class="row pk-screenshots">
+                <div class="col-md-4 col-sm-6">
+                    <div class="screenshot-item">
+                        <img src="images/screenshot-01.jpg" alt="Screenshot 1">
+                        <div class="dl-overlay"><a href="images/screenshot-01.jpg" download>&#11015; DOWNLOAD</a></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="screenshot-item">
+                        <img src="images/screenshot-02.jpg" alt="Screenshot 2">
+                        <div class="dl-overlay"><a href="images/screenshot-02.jpg" download>&#11015; DOWNLOAD</a></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="screenshot-item">
+                        <img src="images/screenshot-03.jpg" alt="Screenshot 3">
+                        <div class="dl-overlay"><a href="images/screenshot-03.jpg" download>&#11015; DOWNLOAD</a></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="screenshot-item">
+                        <img src="images/screenshot-04.jpg" alt="Screenshot 4">
+                        <div class="dl-overlay"><a href="images/screenshot-04.jpg" download>&#11015; DOWNLOAD</a></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="screenshot-item">
+                        <img src="images/screenshot-05.jpg" alt="Screenshot 5">
+                        <div class="dl-overlay"><a href="images/screenshot-05.jpg" download>&#11015; DOWNLOAD</a></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="screenshot-item">
+                        <img src="images/screenshot-06.jpg" alt="Screenshot 6">
+                        <div class="dl-overlay"><a href="images/screenshot-06.jpg" download>&#11015; DOWNLOAD</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── LOGOS & ART ────────────────────────────────────── -->
+        <div class="pk-section">
+            <h2 class="short-hr-left">LOGOS &amp; KEY ART</h2>
+            <p style="font-size:0.85rem; color:#888; margin-bottom:16px;">Free to use in editorial coverage of Pirate Troops.</p>
+            <button class="btn-dl-all" id="btn-dl-logos">&#11015; DOWNLOAD ALL LOGOS &amp; ART (.zip)</button>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="pk-asset-card">
+                        <img src="images/logo.png" alt="Pirate Troops logo" style="background:#1a1a1a; padding: 10px; border-radius:4px;">
+                        <p style="font-size:0.8rem; color:#888; margin-bottom:12px;">Game Logo</p>
+                        <a href="images/logo.png" download class="button">&#11015; DOWNLOAD</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pk-asset-card">
+                        <img src="images/character-sammy.png" alt="Sammy Shortlegs">
+                        <p style="font-size:0.8rem; color:#888; margin-bottom:12px;">Sammy Shortlegs</p>
+                        <a href="images/character-sammy.png" download class="button">&#11015; DOWNLOAD</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pk-asset-card">
+                        <img src="images/character-gramps.png" alt="Gramps Lucius">
+                        <p style="font-size:0.8rem; color:#888; margin-bottom:12px;">Gramps Lucius Shortlegs</p>
+                        <a href="images/character-gramps.png" download class="button">&#11015; DOWNLOAD</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pk-asset-card">
+                        <img src="images/character-baxter.png" alt="Baxter Parrotface">
+                        <p style="font-size:0.8rem; color:#888; margin-bottom:12px;">Baxter Parrotface</p>
+                        <a href="images/character-baxter.png" download class="button">&#11015; DOWNLOAD</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── LINKS ──────────────────────────────────────────── -->
+        <div class="pk-section">
+            <h2 class="short-hr-left">LINKS</h2>
+            <div class="pk-links">
+                <a href="https://store.steampowered.com" class="steam-link" target="_blank" rel="noopener noreferrer">&#9655; STEAM PAGE</a>
+                <a href="https://www.piratetroops.com" target="_blank" rel="noopener noreferrer">&#127760; WEBSITE</a>
+                <a href="https://discord.gg/kn65rdxZ" target="_blank" rel="noopener noreferrer">&#128172; DISCORD</a>
+                <a href="https://www.youtube.com/@piratetroops5738" target="_blank" rel="noopener noreferrer">&#9654; YOUTUBE</a>
+                <a href="https://neverendinglab.itch.io/piratetroops" target="_blank" rel="noopener noreferrer">&#127918; ITCH.IO DEMO</a>
+            </div>
+        </div>
+
+        <!-- ── CONTACT ────────────────────────────────────────── -->
+        <div class="pk-section pk-contact">
+            <h2 class="short-hr-left">CONTACT</h2>
+            <p>For press inquiries, review copies, interviews, or additional assets please reach out to:</p>
+            <p style="font-family:'Press Start 2P',sans-serif; font-size:10px; margin-top: 16px;">
+                <a href="mailto:fero.avalos@gmail.com">fero.avalos@gmail.com</a>
+            </p>
+        </div>
+
+    </div><!-- /container -->
+
+    <!-- ── FOOTER ────────────────────────────────────────────── -->
+    <div id="pk-footer">
+        <p>&copy; Neverending Labyrinth <span id="year"></span> &mdash; All assets on this page are free to use in editorial coverage of Pirate Troops.</p>
+        <a href="../">piratetroops.com</a>
+    </div>
+
+    <script src="../js/jquery-3.4.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- JSZip + FileSaver for client-side zip generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        async function downloadZip(fileList, zipName, btnId) {
+            const btn = document.getElementById(btnId);
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '&#9203; BUILDING ZIP...';
+
+            try {
+                const zip = new JSZip();
+                await Promise.all(fileList.map(async function(filePath) {
+                    const response = await fetch(filePath);
+                    if (!response.ok) throw new Error('Failed to fetch ' + filePath);
+                    const blob = await response.blob();
+                    const filename = filePath.split('/').pop();
+                    zip.file(filename, blob);
+                }));
+                const content = await zip.generateAsync({ type: 'blob' });
+                saveAs(content, zipName);
+            } catch (err) {
+                console.error('Zip error:', err);
+                alert('Could not build zip. Try downloading images individually.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        }
+
+        document.getElementById('btn-dl-screenshots').addEventListener('click', function() {
+            downloadZip([
+                'images/screenshot-01.jpg',
+                'images/screenshot-02.jpg',
+                'images/screenshot-03.jpg',
+                'images/screenshot-04.jpg',
+                'images/screenshot-05.jpg',
+                'images/screenshot-06.jpg'
+            ], 'pirate-troops-screenshots.zip', 'btn-dl-screenshots');
+        });
+
+        document.getElementById('btn-dl-logos').addEventListener('click', function() {
+            downloadZip([
+                'images/logo.png',
+                'images/character-sammy.png',
+                'images/character-gramps.png',
+                'images/character-baxter.png'
+            ], 'pirate-troops-logos-art.zip', 'btn-dl-logos');
+        });
+    </script>
+</body>
+</html>
